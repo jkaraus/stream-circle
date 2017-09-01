@@ -3,78 +3,37 @@ HOST: http://polls.apiblueprint.org/
 
 # blockapp-streamcircle
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Stream Circle/Hybrid block-streamcircle API.
 
-## Questions Collection [/questions]
+## Access token [/Account/Login]
 
-### List All Questions [GET]
+### Login [POST]
 
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Get API access tokens
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+          "Username": "streamcircle@hybrid.com",
+          "Password": "XYuSZ64p5lIL1o"
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
+        {  
+           "Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR",
+           "SCtoken": "OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy",
+           "UserHash": "10035"
+        }
+
+## Release access tokens [/Account/Logout]
+
+### Logout [POST]
+
++ Request (application/json)
     + Headers
 
-            Location: /questions/2
+            Authorization: OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy
+            PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
 
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
++ Response 200 (application/json)
