@@ -5,7 +5,7 @@ HOST: http://polls.apiblueprint.org/
 
 Stream Circle/Hybrid block-streamcircle API.
 
-## Access token [/Account/Login]
+## Access token [/api/Account/Login]
 
 ### Login [POST]
 
@@ -26,7 +26,7 @@ Get API access tokens
            "UserHash": "10035"
         }
 
-## Release access tokens [/Account/Logout]
+## Release access tokens [/api/Account/Logout]
 
 ### Logout [POST]
 
@@ -37,3 +37,729 @@ Get API access tokens
             PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
 
 + Response 200 (application/json)
+
+## Import [/pba/api/v2/schedpattern/import]
+
+### Block import [POST]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy
+            PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
+
+   + Body
+   
+            {
+              "Server": "CHANNEL",
+              "Name": "Self-promo",
+              "Description": "Trailers",
+              "Block": "True",
+              "BlockUID": "AD456987",
+              "Items": [
+                {
+                  "StartTime": "00:00:00.000",
+                  "Duration": "000:15.000",
+                  "Description": "Cars 3",
+                  "TemplateName": "INTERSTITIALCLIP_default",
+                  "FileName": "/ProvysMedia/STANDARD/Trailers/cars-3-part-1.mp4",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOPORT",
+                      "Value": "@port1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Value": "0"
+                    }
+                  ],
+                  "Tags": [
+                    {
+                      "Name": "clip"
+                    }
+                  ]
+                },
+                {
+                  "StartTime": "00:00:15.000",
+                  "Duration": "001:00.000",
+                  "Description": "Big buck bunny",
+                  "TemplateName": "INTERSTITIALCLIP_default",
+                  "FileName": "/ProvysMedia/STANDARD/Trailers/big_buck_bunny.mp4",
+                  "FileOriginalPath": "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                  "FileIngestWorkflowNM": "DOWNLOAD",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOPORT",
+                      "Value": "@port1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Value": "0"
+                    }
+                  ],
+                  "Tags": [
+                    {
+                      "Name": "clip"
+                    }
+                  ]
+                }
+              ]
+            }
+
++ Response 200 (application/json)
+
+        {
+          "Result": true,
+          "Message": "Plan imported successfully",
+        }
+        
+## Templates [/pba/api/v2/template/list]
+
+### List of installed graphical templates [GET]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy
+            PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
+
++ Response 200 (application/json)
+
+            {
+              "Items": [
+                {
+                  "Kind": "S",
+                  "Name": "SPORTLOGOTEXTSTRIP_default",
+                  "Description": "Sport logo text strip",
+                  "Note": "Large image-text-style strip as secondary event.",
+                  "TemplateParams": [
+                    {
+                      "Name": "TEXT",
+                      "Label": "Text",
+                      "Value": "Now showing"
+                    },
+                    {
+                      "Name": "IMAGEFILENAME",
+                      "Label": "Image",
+                      "Value": "/ProvysMedia/STANDARD/Images/sport_logo.png",
+                      "IsFileName": "1"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "S",
+                  "Name": "ANNOUNCEMENTTEXT_default",
+                  "Description": "Header-body-style text",
+                  "Note": "Header-body-style announcement text as secondary event.",
+                  "TemplateParams": [
+                    {
+                      "Name": "HEADERTEXT",
+                      "Label": "Header text",
+                      "Value": "Header-body-style text"
+                    },
+                    {
+                      "Name": "BODYTEXT",
+                      "Label": "Body text",
+                      "Value": "as secondary event"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "S",
+                  "Name": "OVERLAYIMAGE_default",
+                  "Description": "Overlay image",
+                  "Note": "Overlay image as secondary event.",
+                  "TemplateParams": [
+                    {
+                      "Name": "IMAGEFILENAME",
+                      "Label": "Image",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "INTERSTITIALCLIP_default",
+                  "Description": "Interstitial clip",
+                  "Note": "Video clip without the secondary full-screen logo.",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOFILENAME",
+                      "Label": "Clip",
+                      "IsVideoFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEONAME",
+                      "Label": "Video ID",
+                      "IsVideoName": "1"
+                    },
+                    {
+                      "Name": "VIDEOPORT",
+                      "Label": "Videoserver port",
+                      "Value": "@port1",
+                      "Type": "E",
+                      "Format": "@port1;@port2"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Label": "Play from",
+                      "Value": "0",
+                      "IsVideoOffset": "1"
+                    },
+                    {
+                      "Name": "FILENAME",
+                      "Label": "File",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "DURATION",
+                      "Label": "Duration",
+                      "Type": "T"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "NEWSCLIP_default",
+                  "Description": "News clip",
+                  "Note": "Video clip with the secondary full-screen logo, a multiple-object lower-third (clock & static text & image & scrolling text) and a header-body-style announcement. Adjust the start-time of the text relative to video clip end. Announcement duration preset to 7 seconds.",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOFILENAME",
+                      "Label": "Clip",
+                      "IsVideoFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEONAME",
+                      "Label": "Video ID",
+                      "IsVideoName": "1"
+                    },
+                    {
+                      "Name": "VIDEOPORT",
+                      "Label": "Videoserver port",
+                      "Value": "@port1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Label": "Play from",
+                      "Value": "0",
+                      "IsVideoOffset": "1"
+                    },
+                    {
+                      "Name": "SHOWTITLETEXT",
+                      "Label": "Static text",
+                      "Value": "Rep title"
+                    },
+                    {
+                      "Name": "SCROLLINGTEXT",
+                      "Label": "Scrolling text",
+                      "Value": "This scrolling text is scrolling and scrolling and... scrolling."
+                    },
+                    {
+                      "Name": "HEADERTEXT",
+                      "Label": "Announcement header",
+                      "Value": "Header"
+                    },
+                    {
+                      "Name": "BODYTEXT",
+                      "Label": "Announcement body",
+                      "Value": "Body"
+                    },
+                    {
+                      "Name": "ENDOFFSET",
+                      "Label": "Announcement start at (from the end of the clip)",
+                      "Value": "8000",
+                      "Type": "T"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "STATIONLOGO_default",
+                  "Description": "Station logo load",
+                  "Note": "Select one file containing a logo to be used as a background image (i. e. during breaks) and another one for the lower-3rd (i .e. next to a crawling text). Use full-resolution (i. e. 1920×1080) images only.",
+                  "TemplateParams": [
+                    {
+                      "Name": "FILENAME",
+                      "Label": "Background image",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "FILENAME2",
+                      "Label": "Lower-3rd's image",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "PRIMARYFULLSCREENLOGO_default",
+                  "Description": "Primary logo load",
+                  "Note": "Primary- (i. e. upper-left-corner-) logo selection. Use a full-resolution (i. e. 1920×1080) alpha-channel image with the logo already sized and positioned as required.",
+                  "TemplateParams": [
+                    {
+                      "Name": "FILENAME",
+                      "Label": "Image",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircleFullScreenLogo.png",
+                      "IsFileName": "1"
+                    }
+                  ]
+                },
+                {
+                  "UniqueID": "2eab3d0c-87ff-402a-afdd-7ce300674f60",
+                  "Kind": "T",
+                  "Name": "CAROUSELBREAK_default",
+                  "Description": "Carousel break",
+                  "Note": "Teasers to 3 videos shown in a carousel-style layout. Select an image and enter a text for each video to be shown in the info-strip on the right. Duration preset to 10 seconds / video.",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOFILENAME1",
+                      "Label": "Clip 1",
+                      "Value": "/ProvysMedia/STANDARD/Jingles/SC_animated_logo.mov",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEOFILENAME2",
+                      "Label": "Clip 2",
+                      "Value": "/ProvysMedia/STANDARD/Jingles/SC_animated_logo.mov",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEOFILENAME3",
+                      "Label": "Clip 3",
+                      "Value": "/ProvysMedia/STANDARD/Jingles/SC_animated_logo.mov",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET1",
+                      "Label": "Play clip 1 from",
+                      "Value": "0",
+                      "Type": "T"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET2",
+                      "Label": "Play clip 2 from",
+                      "Value": "0",
+                      "Type": "T"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET3",
+                      "Label": "Play clip 3 from",
+                      "Value": "0",
+                      "Type": "T"
+                    },
+                    {
+                      "Name": "IMAGE1",
+                      "Label": "Clip 1 thumbnail",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "IMAGE2",
+                      "Label": "Clip 2 thumbnail",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "IMAGE3",
+                      "Label": "Clip 3 thumbnail",
+                      "Value": "/ProvysMedia/STANDARD/Images/StreamCircle.png",
+                      "IsFileName": "1"
+                    },
+                    {
+                      "Name": "TEXT1",
+                      "Label": "Clip 1 title",
+                      "Value": "Title 1"
+                    },
+                    {
+                      "Name": "TEXT2",
+                      "Label": "Clip 2 title",
+                      "Value": "Title 2"
+                    },
+                    {
+                      "Name": "TEXT3",
+                      "Label": "Clip 3 title",
+                      "Value": "Title 3"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "TRANSITIONLOGOCLIP_default",
+                  "Description": "Logo clip & transition",
+                  "Note": "Video clip with the secondary full-screen logo and an initial transition effect. Adjustable type and length of the transition.",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOFILENAME",
+                      "Label": "Clip",
+                      "IsVideoFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEONAME",
+                      "Label": "Video ID",
+                      "IsVideoName": "1"
+                    },
+                    {
+                      "Name": "VIDEOPORT",
+                      "Label": "Videoserver port",
+                      "Value": "@port1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Label": "Play from",
+                      "Value": "0",
+                      "IsVideoOffset": "1"
+                    },
+                    {
+                      "Name": "TRANLENGTH",
+                      "Label": "Transition length",
+                      "Value": "600",
+                      "Type": "T"
+                    },
+                    {
+                      "Name": "VIDEOTRAN",
+                      "Label": "Video transition effect",
+                      "Value": "swipefromcenter"
+                    },
+                    {
+                      "Name": "AUDIOTRAN",
+                      "Label": "Audio transition effect",
+                      "Value": "crossfade"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "S",
+                  "Name": "CRAWLINGTEXT_default",
+                  "Description": "Crawling text",
+                  "Note": "Crawling text with an image as secondary event. Adjustable font, colour, crawling speed and spacing of instances of the text.",
+                  "TemplateParams": [
+                    {
+                      "Name": "TEXT",
+                      "Label": "Crawling text",
+                      "Value": "Crawling text"
+                    },
+                    {
+                      "Name": "FONTNAME",
+                      "Label": "Font",
+                      "Value": "Arial"
+                    },
+                    {
+                      "Name": "TEXTCOLOR",
+                      "Label": "Text colour",
+                      "Value": "0 0 0"
+                    },
+                    {
+                      "Name": "PANELCOLOR",
+                      "Label": "Panel colour",
+                      "Value": "1 1 1"
+                    },
+                    {
+                      "Name": "SPEED",
+                      "Label": "Crawling speed",
+                      "Value": "-0.2"
+                    },
+                    {
+                      "Name": "SPACING",
+                      "Label": "Instances spacing",
+                      "Value": "2400"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "S",
+                  "Name": "SCROLLINGTEXT_default",
+                  "Description": "Scrolling text",
+                  "Note": "Scrolling text with an image as secondary event. Adjustable font, colour and hold-off time of the text.",
+                  "TemplateParams": [
+                    {
+                      "Name": "TEXT",
+                      "Label": "Scrolling text",
+                      "Value": "Scrolling text"
+                    },
+                    {
+                      "Name": "FONTNAME",
+                      "Label": "Font",
+                      "Value": "Arial"
+                    },
+                    {
+                      "Name": "TEXTCOLOR",
+                      "Label": "Text colour",
+                      "Value": "0 0 0"
+                    },
+                    {
+                      "Name": "PANELCOLOR",
+                      "Label": "Panel colour",
+                      "Value": "1 1 1"
+                    },
+                    {
+                      "Name": "HOLDOFF",
+                      "Label": "Hold-off time (ms)",
+                      "Value": "3000",
+                      "Type": "T"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "TRANSITIONINTERSTITIALCLIP_default",
+                  "Description": "Interstitial clip & transition",
+                  "Note": "Video clip without the secondary full-screen logo with an initial transition effect. Adjustable type and length of the transition.",
+                  "TemplateParams": [
+                    {
+                      "Name": "VIDEOFILENAME",
+                      "Label": "Clip",
+                      "IsVideoFileName": "1"
+                    },
+                    {
+                      "Name": "VIDEONAME",
+                      "Label": "Video ID",
+                      "IsVideoName": "1"
+                    },
+                    {
+                      "Name": "VIDEOPORT",
+                      "Label": "Videoserver port",
+                      "Value": "@port1"
+                    },
+                    {
+                      "Name": "VIDEOOFFSET",
+                      "Label": "Play from",
+                      "Value": "0",
+                      "IsVideoOffset": "1"
+                    },
+                    {
+                      "Name": "TRANLENGTH",
+                      "Label": "Transition length",
+                      "Value": "600",
+                      "Type": "T"
+                    },
+                    {
+                      "Name": "VIDEOTRAN",
+                      "Label": "Video transition effect",
+                      "Value": "swipefromcenter"
+                    },
+                    {
+                      "Name": "AUDIOTRAN",
+                      "Label": "Audio transition effect",
+                      "Value": "crossfade"
+                    }
+                  ]
+                },
+                {
+                  "Kind": "T",
+                  "Name": "WEATHERCLIP_default",
+                  "Description": "Weather clip",
+                  "Note": "Weather announcement break with the secondary full-screen logo. Weather data periodically read from an RSS-feed by means of a job. Select a background image and an audio or a video file to be playing along (if a video is chosen, only its audio track(s) will be used).",
+                  "TemplateParams": [
+                    {
+                      "Name": "AUDIOFILENAME",
+                      "Label": "Background audio",
+                      "IsVideoFileName": "1"
+                    },
+                    {
+                      "Name": "AUDIONAME",
+                      "Label": "Media ID",
+                      "IsVideoName": "1"
+                    },
+                    {
+                      "Name": "PORT",
+                      "Label": "Videoserver port",
+                      "Value": "@port2"
+                    },
+                    {
+                      "Name": "OFFSET",
+                      "Label": "Play from",
+                      "Value": "0",
+                      "IsVideoOffset": "1"
+                    },
+                    {
+                      "Name": "BACKGROUND",
+                      "Label": "Background image",
+                      "Value": "/ProvysMedia/STANDARD/Images/WeatherBackground.jpg",
+                      "IsFileName": "1"
+                    }
+                  ]
+                }
+              ]
+            }     
+            
+## Media content [/pba/api/v2/folder/export]
+
+### Folder content [GET]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy
+            PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
+
+    + Body
+    
+            {
+                "Path": "/ProvysMedia/STANDARD/Trailers"
+            }
+
++ Response 200 (application/json)
+
+            {
+              "Folders": [
+                {
+                  "SymbolicName": "Trailers",
+                  "SymbolicFullpath": "/ProvysMedia/STANDARD/Trailers",
+                  "IngestWorkflowNM": "DOWNLOAD",
+                  "Files": [
+                    {
+                      "UniqueID": "88cb6b93-ad2b-4c22-8cc9-0f0235679780",
+                      "UMID": "big_buck_bunny.mp4",
+                      "SymbolicName": "big_buck_bunny.mp4",
+                      "OriginalPath": "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                      "LiveFeed": false,
+                      "IsPlanControlled": false,
+                      "Mime": "video/mp4",
+                      "VideoFormat": "AVC/AAC LC",
+                      "Bitrate": "613147",
+                      "Resolution": "8",
+                      "Duration": "001:00.095",
+                      "Size": 5510872,
+                      "LastWriteTime": "2017-08-28 13:04:56",
+                      "Audios": [
+                        {
+                          "Frequency": "22.05 KHz",
+                          "BitRate": "64000",
+                          "Language": "English",
+                          "Channels": "2",
+                          "Positions": "Front: L R",
+                          "Format": "AAC LC"
+                        }
+                      ],
+                      "Tags": [],
+                      "Segments": []
+                    },
+                    {
+                      "UniqueID": "cac060be-74f4-4134-a06f-17ad3caddd23",
+                      "UMID": "cars-3-part-1.mp4",
+                      "SymbolicName": "cars-3-part-1.mp4",
+                      "LiveFeed": false,
+                      "IsPlanControlled": false,
+                      "Mime": "video/mp4",
+                      "VideoFormat": "AVC/AAC LC",
+                      "Bitrate": "9473843",
+                      "Resolution": "8",
+                      "Duration": "000:35.368",
+                      "Size": 42466636,
+                      "LastWriteTime": "2017-01-20 11:34:11",
+                      "Audios": [
+                        {
+                          "Frequency": "44.1 KHz",
+                          "BitRate": "128000",
+                          "Language": "English",
+                          "Channels": "2",
+                          "Positions": "Front: L R",
+                          "Format": "AAC LC"
+                        }
+                      ],
+                      "Tags": [
+                        {
+                          "Name": "default"
+                        }
+                      ],
+                      "Segments": []
+                    },
+                    {
+                      "UniqueID": "fbe8968c-e58b-4a19-abc6-c3317e8e37f7",
+                      "UMID": "cars-3-part-2.mp4",
+                      "SymbolicName": "cars-3-part-2.mp4",
+                      "LiveFeed": false,
+                      "IsPlanControlled": false,
+                      "Mime": "video/mp4",
+                      "VideoFormat": "AVC/AAC LC",
+                      "Bitrate": "9579023",
+                      "Resolution": "8",
+                      "Duration": "000:51.383",
+                      "Size": 62357229,
+                      "LastWriteTime": "2017-01-20 11:34:16",
+                      "Audios": [
+                        {
+                          "Frequency": "44.1 KHz",
+                          "BitRate": "128000",
+                          "Language": "English",
+                          "Channels": "2",
+                          "Positions": "Front: L R",
+                          "Format": "AAC LC"
+                        }
+                      ],
+                      "Tags": [
+                        {
+                          "Name": "default"
+                        }
+                      ],
+                      "Segments": []
+                    },
+                    {
+                      "UniqueID": "ae75dab8-7af3-4c7c-8fd9-f1b271234772",
+                      "UMID": "halo.halo.1x01.padelana.madonna.dvb.xvid.multidub-bb.avi",
+                      "SymbolicName": "halo.halo.1x01.padelana.madonna.dvb.xvid.multidub-bb.avi",
+                      "LiveFeed": false,
+                      "IsPlanControlled": false,
+                      "Mime": "video/x-msvideo",
+                      "VideoFormat": "XVID/MPA1L3",
+                      "Bitrate": "967517",
+                      "Resolution": "8",
+                      "Duration": "028:52.680",
+                      "Size": 244279296,
+                      "LastWriteTime": "2006-04-06 05:49:40",
+                      "Audios": [
+                        {
+                          "Frequency": "48.0 KHz",
+                          "BitRate": "85000",
+                          "Channels": "1",
+                          "Format": "MPA1L3"
+                        },
+                        {
+                          "Frequency": "48.0 KHz",
+                          "BitRate": "56559",
+                          "Channels": "1",
+                          "Format": "MPA1L3"
+                        }
+                      ],
+                      "Tags": [],
+                      "Segments": []
+                    },
+                    {
+                      "UniqueID": "230b2a38-5b14-4109-920c-70d6925b5986",
+                      "UMID": "sleepless-part-1.mp4",
+                      "SymbolicName": "sleepless-part-1.mp4",
+                      "LiveFeed": false,
+                      "IsPlanControlled": false,
+                      "Mime": "video/mp4",
+                      "VideoFormat": "AVC/AAC LC",
+                      "Bitrate": "8712299",
+                      "Resolution": "8",
+                      "Duration": "001:07.067",
+                      "Size": 74142846,
+                      "LastWriteTime": "2017-01-20 11:34:21",
+                      "Audios": [
+                        {
+                          "Frequency": "44.1 KHz",
+                          "BitRate": "128000",
+                          "Language": "English",
+                          "Channels": "2",
+                          "Positions": "Front: L R",
+                          "Format": "AAC LC"
+                        }
+                      ],
+                      "Tags": [
+                        {
+                          "Name": "default"
+                        }
+                      ],
+                      "Segments": []
+                    }
+                  ],
+                  "FilesCount": 5
+                }
+              ]
+            }
