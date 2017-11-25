@@ -36,6 +36,29 @@ Get API access tokens
                 "UserHash": "10035"
             }
 
+## Refresh access tokens [/api/Account/RefreshToken]
+
+### Refresh token [POST]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy
+            PortalAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR
+
++ Response 200 (application/json)
+    + Attributes
+    
+            + Token: (string) - Authorization token
+            + SCtoken: (string) - PortalAuthorization token
+
+   + Body
+   
+            {  
+                "Token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IldXYTVBM1FJV1JxVS1nWTVLRzJQR",
+                "SCtoken": "OiJSUzI1NiIsIng1dCI6IlIxSnR4Z3B4OHJnV3BXZWR3UGZQS1VQODhYdy"
+            }
+
 ## Release access tokens [/api/Account/Logout]
 
 ### Logout [POST]
